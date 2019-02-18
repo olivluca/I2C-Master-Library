@@ -231,7 +231,7 @@ uint8_t I2C::receive()
 
 /////////////////////////////////////////////////////
 
-uint8_t I2C::write(uint8_t address, uint8_t registerAddress)
+uint8_t I2C::write(uint8_t address, uint8_t registerAddress, bool nostop)
 {
   returnStatus = 0;
   returnStatus = start();
@@ -248,6 +248,8 @@ uint8_t I2C::write(uint8_t address, uint8_t registerAddress)
     if(returnStatus == 1){return(3);}
     return(returnStatus);
   }
+  if (nostop)
+    return(returnStatus);
   returnStatus = stop();
   if(returnStatus)
   {
@@ -257,9 +259,9 @@ uint8_t I2C::write(uint8_t address, uint8_t registerAddress)
   return(returnStatus);
 }
 
-uint8_t I2C::write(int address, int registerAddress)
+uint8_t I2C::write(int address, int registerAddress, bool nostop)
 {
-  return(write((uint8_t) address, (uint8_t) registerAddress));
+  return(write((uint8_t) address, (uint8_t) registerAddress, nostop));
 }
 
 uint8_t I2C::write(uint8_t address, uint8_t registerAddress, uint8_t data)

@@ -99,8 +99,8 @@ class I2C
     void scan();
     uint8_t available();
     uint8_t receive();
-    uint8_t write(uint8_t, uint8_t);
-    uint8_t write(int, int); 
+    uint8_t write(uint8_t, uint8_t, bool nostop=false);
+    uint8_t write(int, int, bool nostop=false); 
     uint8_t write(uint8_t, uint8_t, uint8_t);
     uint8_t write(int, int, int);
     uint8_t write(uint8_t, uint8_t, char*);
